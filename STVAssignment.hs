@@ -343,7 +343,20 @@ groupballot = transpose getcleanvotes
 --countfirstones :: [[String]] -> Int
 --countfirstones = length getcleanvotes !! 1 filter "1"
 
+--Set Up Canidates
+
+
 firstchoice (1,_,_,_,_) = True
 firstchoice _ = False
 
-countfirstones = fmap length groupballot
+filterfirst1s = filter firstchoice groupballot
+
+count :: Eq a => a -> [a] -> Int
+count x = length . filter (== x)
+
+
+countfirstones = fmap count "1" groupballot
+
+
+
+--c1firsts = sort [canidate1 c | c <- groupballot, canidate1 c == "1"]
